@@ -14,4 +14,8 @@ LearningQ is a Learning Management System to solve the inefficiency in managing 
 This project doesn't have integration with backend API, all data is provided by `FakeRepository` that contains dummy data.
 
 ### Other Resources
-- Figma Link: https://www.figma.com/file/wdSa53T2oe7NI0PVgRc6ME/LearningQ?type=design&node-id=1-2
+<ul>
+  <li><a href="https://www.figma.com/file/wdSa53T2oe7NI0PVgRc6ME/LearningQ">Figma </a></li>
+   <li><a href="https://www.figma.com/file/wdSa53T2oe7NI0PVgRc6ME/LearningQ?type=design&node-id=0-1&mode=design&t=JfKWwAlsvRo01KM7-0">Logo Design </a></li>
+  <li><a href="https://figma.com/file/wdSa53T2oe7NI0PVgRc6ME/LearningQ?type=design&node-id=1-2&mode=design&t=JfKWwAlsvRo01KM7-0">LearningQ </a></li>
+</ul>
