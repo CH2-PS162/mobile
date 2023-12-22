@@ -72,6 +72,11 @@ interface ApiService {
     ): WithPagination<List<Quiz>>
 
 
+    suspend fun fetchAdminCourses(
+        page: Int,
+        limit: Int,
+    ): WithPagination<List<Course>>
+
     @POST("/register")
     suspend fun createUser(
         @Body body: AdminCreateUserRequest,

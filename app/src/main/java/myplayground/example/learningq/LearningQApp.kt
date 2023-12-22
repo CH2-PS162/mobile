@@ -48,7 +48,9 @@ import myplayground.example.learningq.ui.layout.DrawerBodyStudent
 import myplayground.example.learningq.ui.layout.DrawerBodyTeacher
 import myplayground.example.learningq.ui.layout.DrawerHeader
 import myplayground.example.learningq.ui.navigation.Screen
-import myplayground.example.learningq.ui.screens.admin.dashboard.AdminDashboardScreen
+import myplayground.example.learningq.ui.screens.admin.`class`.AdminClassScreen
+import myplayground.example.learningq.ui.screens.admin.class_add.AdminClassAddScreen
+import myplayground.example.learningq.ui.screens.admin.course.AdminCourseScreen
 import myplayground.example.learningq.ui.screens.admin.profile.AdminProfileScreen
 import myplayground.example.learningq.ui.screens.admin.user.AdminUserScreen
 import myplayground.example.learningq.ui.screens.admin.user_add.AdminUserAddScreen
@@ -112,7 +114,7 @@ fun LearningQApp(
                 }
 
                 is Role.Admin -> {
-                    Screen.AdminDashboard.route
+                    Screen.AdminClass.route
                 }
 
                 else -> Screen.AuthLoading.route
@@ -438,11 +440,24 @@ fun LearningQApp(
                     )
                 }
 
-                composable(Screen.AdminDashboard.route) {
-                    AdminDashboardScreen(
+                composable(Screen.AdminClass.route) {
+                    AdminClassScreen(
                         modifier = containerModifier
                     )
                 }
+
+                composable(Screen.AdminClassAdd.route) {
+                    AdminClassAddScreen(
+                        modifier = containerModifier
+                    )
+                }
+
+                composable(Screen.AdminCourse.route) {
+                    AdminCourseScreen(
+                        modifier = containerModifier
+                    )
+                }
+
 
                 composable(Screen.AdminProfile.route) {
                     AdminProfileScreen(

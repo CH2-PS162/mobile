@@ -41,7 +41,18 @@ sealed class Screen(val route: String) {
     object TeacherQuizAdd : Screen("teacherquizadd")
 
 
-    object AdminDashboard : Screen("admindashboard")
+    object AdminClass : Screen("adminclass")
+    object AdminClassDetail : Screen("adminclassdetail/{id}") {
+        fun createRoute(classId: String) = "adminclassdetail/$classId"
+    }
+
+    object AdminClassAdd : Screen("adminclassadd")
+    object AdminCourse : Screen("admincourse")
+    object AdminCourseDetail : Screen("admincoursedetail/{id}") {
+        fun createRoute(courseId: String) = "admincoursedetail/$courseId"
+    }
+
+    object AdminCourseAdd : Screen("admincourseadd")
     object AdminUser : Screen("adminuser")
     object AdminUserAdd : Screen("adminuseradd")
     object AdminProfile : Screen("adminprofile")

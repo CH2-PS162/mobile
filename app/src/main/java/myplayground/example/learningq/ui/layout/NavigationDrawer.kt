@@ -17,9 +17,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Dataset
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.LocalLibrary
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Quiz
+import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShortText
 import androidx.compose.material.icons.filled.SupervisedUserCircle
@@ -45,7 +47,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import myplayground.example.learningq.LearningQApp
 import myplayground.example.learningq.R
 import myplayground.example.learningq.di.Injection
 import myplayground.example.learningq.model.User
@@ -412,11 +413,19 @@ fun DrawerBodyAdmin(
         closeDrawer = closeDrawer,
         items = listOf(
             MenuItem(
-                id = "home",
-                title = "Home",
-                contentDescription = "Home",
-                activeRoute = Screen.AdminDashboard.route,
-                icon = Icons.Default.Home,
+                id = "class",
+                title = "Class",
+                contentDescription = "Class",
+                activeRoute = Screen.AdminClass.route,
+                icon = Icons.Default.School,
+                color = MaterialTheme.colorScheme.onBackground,
+            ),
+            MenuItem(
+                id = "course",
+                title = "Course",
+                contentDescription = "Course",
+                activeRoute = Screen.AdminCourse.route,
+                icon = Icons.Default.LocalLibrary,
                 color = MaterialTheme.colorScheme.onBackground,
             ),
             MenuItem(
@@ -454,14 +463,20 @@ fun DrawerBodyAdmin(
         ),
         onItemClick = { menuItem ->
             when (menuItem.id) {
-                "home" -> {
-                    navController.navigate(Screen.AdminDashboard.route) {
+                "class" -> {
+                    navController.navigate(Screen.AdminClass.route) {
                         popUpTo(0)
                     }
                 }
 
+                "course" -> {
+
+                }
+
                 "user" -> {
-                    navController.navigate(Screen.AdminUser.route)
+                    navController.navigate(Screen.AdminUser.route) {
+                        popUpTo(0)
+                    }
                 }
 
 

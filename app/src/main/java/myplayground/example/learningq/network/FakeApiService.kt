@@ -201,6 +201,20 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
         )
     }
 
+    override suspend fun fetchAdminCourses(page: Int, limit: Int): WithPagination<List<Course>> {
+        delay(1500)
+
+        val startIndex = minOf((page - 1) * limit, COURSE_LIST.size)
+        val endIndex = minOf(startIndex + limit, COURSE_LIST.size)
+
+        return WithPagination(
+            data = COURSE_LIST.subList(startIndex, endIndex),
+            page = page,
+            status = "success",
+            totalPage = ceil(COURSE_LIST.size.toFloat() / limit.toFloat()).toInt(),
+        )
+    }
+
     override suspend fun createUser(body: AdminCreateUserRequest) {
         TODO("Not yet implemented")
     }
@@ -374,7 +388,7 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
                     quizId = QUIZ_LIST[3].id,
                     studentUserId = studentUser.id,
                     teacherUserId = teacherUser.id,
-                    content = "Kurang memberikan dukungan kepada siswa yang mengalami kesulitan belajar",
+                    content = "Guru ini memberikan materi tambahan yang sangat membantu.",
                     quiz = QUIZ_LIST[3],
                     studentUser = studentUser,
                     teacherUser = teacherUser,
