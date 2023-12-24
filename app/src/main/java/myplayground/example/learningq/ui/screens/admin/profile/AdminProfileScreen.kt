@@ -2,6 +2,7 @@ package myplayground.example.learningq.ui.screens.admin.profile
 
 import android.app.Application
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,6 +26,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,8 +44,7 @@ import myplayground.example.learningq.ui.utils.debugPlaceholder
 
 @Composable
 fun AdminProfileScreen(
-    modifier: Modifier = Modifier,
-    vm: AdminProfileViewModel = viewModel(
+    modifier: Modifier = Modifier, vm: AdminProfileViewModel = viewModel(
         factory = ViewModelFactory(
             LocalContext.current.applicationContext as Application,
             Injection.provideRepository(LocalContext.current),
@@ -67,6 +68,7 @@ fun AdminProfileContent(
     isLoading: Boolean = false,
     user: User? = null,
 ) {
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -79,15 +81,26 @@ fun AdminProfileContent(
                 .padding(0.dp, 28.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            AsyncImage(
-                model = user?.imageUrl,
-                contentDescription = "Profile Photo",
-                placeholder = debugPlaceholder(debugPreview = R.drawable.avatar_placeholder),
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier
-                    .width(160.dp)
-                    .clip(CircleShape),
-            )
+            if (user?.imageUrl != null) {
+                AsyncImage(
+                    model = user.imageUrl,
+                    contentDescription = "Profile Photo",
+                    placeholder = debugPlaceholder(debugPreview = R.drawable.avatar_placeholder),
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier
+                        .width(160.dp)
+                        .clip(CircleShape),
+                )
+            } else {
+                Image(
+                    modifier = Modifier
+                        .width(160.dp)
+                        .clip(CircleShape),
+                    painter = painterResource(R.drawable.avatar_placeholder),
+                    contentDescription = "Profile Photo",
+                    contentScale = ContentScale.FillWidth,
+                )
+            }
             Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = user?.name ?: "",
@@ -107,10 +120,6 @@ fun AdminProfileContent(
             if (isLoading) {
 
             } else if (user != null) {
-                AdminProfileInformationRow(
-                    title = "Nomor Induk / NISN",
-                    content = user.id,
-                )
                 AdminProfileInformationRow(
                     title = "Nama",
                     content = user.name,
@@ -139,10 +148,7 @@ fun AdminProfileInformationRow(
                 val y = size.height - strokeWidth / 2
 
                 drawLine(
-                    strokeColor,
-                    Offset(0f, y),
-                    Offset(size.width, y),
-                    strokeWidth
+                    strokeColor, Offset(0f, y), Offset(size.width, y), strokeWidth
                 )
             }
             .padding(16.dp, 6.dp),
@@ -166,8 +172,7 @@ fun AdminProfileInformationRow(
 fun AdminProfileContentPreview() {
     LearningQTheme {
         AdminProfileContent(
-            isLoading = false,
-            user = User(
+            isLoading = false, user = User(
                 id = "1",
                 name = "Student",
                 imageUrl = "https://miro.medium.com/v2/resize:fill:110:110/1*x1I-A7aVdqWFelvJakKWBg.jpeg",
@@ -185,8 +190,7 @@ fun AdminProfileContentPreview() {
 fun AdminProfileInformationRowPreview() {
     LearningQTheme {
         AdminProfileInformationRow(
-            "Title",
-            "Lorem ipsum"
+            "Title", "Lorem ipsum"
         )
     }
 }

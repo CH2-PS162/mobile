@@ -56,6 +56,14 @@ interface Repository {
         apiService: ApiService,
     ): Flow<PagingData<Class>>
 
+    suspend fun fetchAdminClass(
+        apiService: ApiService,
+    ): List<Class>
+
+    suspend fun fetchAdminUserTeacher(
+        apiService: ApiService,
+    ): List<User>
+
     suspend fun fetchAdminCoursePaging(
         apiService: ApiService,
     ): Flow<PagingData<Course>>

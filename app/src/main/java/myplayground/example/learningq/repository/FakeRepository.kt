@@ -183,6 +183,14 @@ class FakeRepository(
             }).flow
     }
 
+    override suspend fun fetchAdminClass(apiService: ApiService): List<Class> {
+        return apiService.fetchAdminClass()
+    }
+
+    override suspend fun fetchAdminUserTeacher(apiService: ApiService): List<User> {
+        return apiService.fetchAdminUserTeacher()
+    }
+
     override suspend fun fetchAdminCoursePaging(apiService: ApiService): Flow<PagingData<Course>> {
         return Pager(
             config = PagingConfig(

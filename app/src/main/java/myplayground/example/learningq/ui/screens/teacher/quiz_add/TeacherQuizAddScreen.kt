@@ -87,7 +87,6 @@ fun TeacherQuizAddContent(
         Spacer(modifier = Modifier.height(28.dp))
 
         Box {
-
             ExposedDropdownMenuBox(
                 expanded = isMenuExpanded.value,
                 onExpandedChange = {

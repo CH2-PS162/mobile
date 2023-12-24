@@ -470,7 +470,9 @@ fun DrawerBodyAdmin(
                 }
 
                 "course" -> {
-
+                    navController.navigate(Screen.AdminCourse.route) {
+                        popUpTo(0)
+                    }
                 }
 
                 "user" -> {

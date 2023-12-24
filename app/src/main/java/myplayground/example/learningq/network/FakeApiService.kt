@@ -201,6 +201,14 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
         )
     }
 
+    override suspend fun fetchAdminClass(): List<Class> {
+        return CLASS_LIST
+    }
+
+    override suspend fun fetchAdminUserTeacher(): List<User> {
+        return listUser.filter { it.role == Role.Teacher }
+    }
+
     override suspend fun fetchAdminCourses(page: Int, limit: Int): WithPagination<List<Course>> {
         delay(1500)
 
@@ -260,8 +268,8 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
                     name = "Matematika",
                     teacherUserId = "2",
                     dayOfWeek = CustomDayOfWeek.MONDAY,
-                    startTimeInMinutes = TimeInSeconds(28800),
-                    endTimeInMinutes = TimeInSeconds(54000),
+                    startTimeInSeconds = TimeInSeconds(28800),
+                    endTimeInSeconds = TimeInSeconds(54000),
                     description = null,
 
                     `class` = CLASS_LIST[0],
@@ -272,8 +280,8 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
                     name = "Inggris",
                     teacherUserId = "2",
                     dayOfWeek = CustomDayOfWeek.TUESDAY,
-                    startTimeInMinutes = TimeInSeconds(28800),
-                    endTimeInMinutes = TimeInSeconds(54000),
+                    startTimeInSeconds = TimeInSeconds(28800),
+                    endTimeInSeconds = TimeInSeconds(54000),
                     description = null,
 
                     `class` = CLASS_LIST[0],

@@ -11,9 +11,26 @@ enum class CustomDayOfWeek(val dayNumber: Int) {
     SUNDAY(7);
 
     companion object {
+        fun list(): List<CustomDayOfWeek> = listOf(
+            MONDAY,
+            TUESDAY,
+            WEDNESDAY,
+            THURSDAY,
+            FRIDAY,
+            SATURDAY,
+            SUNDAY,
+        )
+
         fun from(dayNumber: Int): CustomDayOfWeek {
             return values().firstOrNull { it.dayNumber == dayNumber }
                 ?: throw IllegalArgumentException("Invalid day number: $dayNumber")
         }
+    }
+
+    override fun toString(): String {
+        if (this == UNSPECIFIED) {
+            return ""
+        }
+        return super.toString()
     }
 }

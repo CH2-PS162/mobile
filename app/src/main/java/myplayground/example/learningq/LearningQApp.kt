@@ -51,6 +51,7 @@ import myplayground.example.learningq.ui.navigation.Screen
 import myplayground.example.learningq.ui.screens.admin.`class`.AdminClassScreen
 import myplayground.example.learningq.ui.screens.admin.class_add.AdminClassAddScreen
 import myplayground.example.learningq.ui.screens.admin.course.AdminCourseScreen
+import myplayground.example.learningq.ui.screens.admin.course_add.AdminCourseAddScreen
 import myplayground.example.learningq.ui.screens.admin.profile.AdminProfileScreen
 import myplayground.example.learningq.ui.screens.admin.user.AdminUserScreen
 import myplayground.example.learningq.ui.screens.admin.user_add.AdminUserAddScreen
@@ -454,20 +455,26 @@ fun LearningQApp(
 
                 composable(Screen.AdminCourse.route) {
                     AdminCourseScreen(
-                        modifier = containerModifier
+                        modifier = containerModifier,
+                        navController = navController,
                     )
                 }
 
+                composable(Screen.AdminCourseAdd.route) {
+                    AdminCourseAddScreen(
+                        modifier = containerModifier,
+                    )
+                }
 
                 composable(Screen.AdminProfile.route) {
                     AdminProfileScreen(
-                        modifier = containerModifier
                     )
                 }
 
                 composable(Screen.AdminUser.route) {
                     AdminUserScreen(
-                        modifier = containerModifier
+                        modifier = containerModifier,
+                        navController = navController,
                     )
                 }
 

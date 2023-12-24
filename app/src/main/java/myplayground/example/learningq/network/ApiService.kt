@@ -72,6 +72,10 @@ interface ApiService {
     ): WithPagination<List<Quiz>>
 
 
+    suspend fun fetchAdminClass(): List<Class>
+
+    suspend fun fetchAdminUserTeacher(): List<User>
+
     suspend fun fetchAdminCourses(
         page: Int,
         limit: Int,

@@ -165,7 +165,7 @@ fun StudentPresenceDetailCard(
             )
 
             Text(
-                text = "${studentCourse.startTimeInMinutes.toString()} - ${studentCourse.endTimeInMinutes.toString()}",
+                text = "${studentCourse.startTimeInSeconds.toString()} - ${studentCourse.endTimeInSeconds.toString()}",
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
@@ -220,8 +220,8 @@ fun StudentPresenceDetailCardPreview() {
                 id = "1",
                 name = "Class A",
                 dayOfWeek = CustomDayOfWeek.MONDAY,
-                startTimeInMinutes = TimeInSeconds(3600),
-                endTimeInMinutes = TimeInSeconds(7200)
+                startTimeInSeconds = TimeInSeconds(3600),
+                endTimeInSeconds = TimeInSeconds(7200)
             )
         )
     }

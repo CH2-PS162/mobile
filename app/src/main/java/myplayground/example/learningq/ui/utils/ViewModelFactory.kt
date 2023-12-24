@@ -11,6 +11,7 @@ import myplayground.example.learningq.repository.Repository
 import myplayground.example.learningq.ui.screens.admin.`class`.AdminClassViewModel
 import myplayground.example.learningq.ui.screens.admin.class_add.AdminClassAddViewModel
 import myplayground.example.learningq.ui.screens.admin.course.AdminCourseViewModel
+import myplayground.example.learningq.ui.screens.admin.course_add.AdminCourseAddViewModel
 import myplayground.example.learningq.ui.screens.admin.profile.AdminProfileViewModel
 import myplayground.example.learningq.ui.screens.admin.user.AdminUserViewModel
 import myplayground.example.learningq.ui.screens.admin.user_add.AdminUserAddViewModel
@@ -92,6 +93,8 @@ class ViewModelFactory(
             return AdminClassAddViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(AdminCourseViewModel::class.java)) {
             return AdminCourseViewModel(repository, localStorageManager) as T
+        } else if (modelClass.isAssignableFrom(AdminCourseAddViewModel::class.java)) {
+            return AdminCourseAddViewModel(repository, localStorageManager) as T
         } else if (modelClass.isAssignableFrom(AdminUserViewModel::class.java)) {
             return AdminUserViewModel(fakeRepository, localStorageManager) as T
 //            return AdminUserViewModel(repository, localStorageManager) as T
