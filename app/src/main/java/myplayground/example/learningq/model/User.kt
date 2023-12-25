@@ -7,4 +7,7 @@ data class User(
     val role: Role,
     val password: String = "",
     val imageUrl: String? = null,
+
+    val studentUserId: String? = null,
+    val studentUser: User? = null,
 )

@@ -512,6 +512,129 @@ fun DrawerBodyAdmin(
 
 
 @Composable
+fun DrawerBodyParent(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
+    currentRoute: String = "",
+    authManager: AuthManager = Injection.provideAuthManager(LocalContext.current),
+    closeDrawer: () -> Unit = {},
+) {
+    val isLogoutModalOpen = remember {
+        mutableStateOf(false)
+    }
+
+    DrawerBody(modifier = modifier,
+        currentRoute = currentRoute,
+        closeDrawer = closeDrawer,
+        items = listOf(
+            MenuItem(
+                id = "home",
+                title = "Home",
+                contentDescription = "Home",
+                activeRoute = Screen.StudentDashboard.route,
+                icon = Icons.Default.Home,
+                color = MaterialTheme.colorScheme.onBackground,
+            ),
+            MenuItem(
+                id = "presence",
+                title = "Presence",
+                contentDescription = "Presence",
+                icon = Icons.Default.CalendarMonth,
+                color = MaterialTheme.colorScheme.onBackground,
+            ),
+            MenuItem(
+                id = "quiz",
+                title = "Quiz",
+                contentDescription = "Quiz",
+                activeRoute = Screen.StudentQuiz.route,
+                icon = Icons.Default.Quiz,
+                color = MaterialTheme.colorScheme.onBackground,
+            ),
+            MenuItem(
+                id = "report",
+                title = "Report",
+                contentDescription = "Report",
+                activeRoute = Screen.StudentReport.route,
+                icon = Icons.Default.Dataset,
+                color = MaterialTheme.colorScheme.onBackground,
+            ),
+            MenuItem(isSpacing = true),
+            MenuItem(
+                id = "profile",
+                title = "Profile",
+                contentDescription = "Profile",
+                icon = Icons.Default.Person,
+                color = MaterialTheme.colorScheme.onBackground,
+            ),
+            MenuItem(
+                id = "setting",
+                title = "Settings",
+                contentDescription = "Settings",
+                icon = Icons.Default.Settings,
+                color = MaterialTheme.colorScheme.onBackground,
+            ),
+            MenuItem(
+                id = "logout",
+                title = "Logout",
+                contentDescription = "Logout",
+                icon = Icons.Default.Logout,
+                color = MaterialTheme.colorScheme.error,
+            ),
+        ),
+        onItemClick = { menuItem ->
+            when (menuItem.id) {
+                "home" -> {
+                    navController.navigate(Screen.StudentDashboard.route) {
+                        popUpTo(0)
+                    }
+                }
+
+                "presence" -> {
+                    navController.navigate(Screen.StudentPresence.route) {
+                        popUpTo(0)
+                    }
+                }
+
+                "quiz" -> {
+                    navController.navigate(Screen.StudentQuiz.route) {
+                        popUpTo(0)
+                    }
+                }
+
+                "report" -> {
+                    navController.navigate(Screen.StudentReport.route) {
+                        popUpTo(0)
+                    }
+                }
+
+                "profile" -> {
+                    navController.navigate(Screen.StudentProfile.route)
+                }
+
+                "setting" -> {
+                    navController.navigate(Screen.Setting.route)
+                }
+
+                "logout" -> {
+                    isLogoutModalOpen.value = true
+                }
+            }
+        })
+
+    if (isLogoutModalOpen.value) {
+        DialogLogout(onDismissRequest = {
+            isLogoutModalOpen.value = false
+        }, logout = {
+            authManager.logout()
+
+            navController.navigate(Screen.SignIn.route) {
+                popUpTo(0)
+            }
+        })
+    }
+}
+
+@Composable
 fun DialogLogout(
     onDismissRequest: () -> Unit = {},
     logout: () -> Unit = {},

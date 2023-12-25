@@ -57,6 +57,15 @@ import myplayground.example.learningq.ui.screens.admin.user.AdminUserScreen
 import myplayground.example.learningq.ui.screens.admin.user_add.AdminUserAddScreen
 import myplayground.example.learningq.ui.screens.home.HomeScreen
 import myplayground.example.learningq.ui.screens.landing.LandingScreen
+import myplayground.example.learningq.ui.screens.parent.dashboard.ParentStudentDashboardScreen
+import myplayground.example.learningq.ui.screens.parent.feedback.ParentStudentFeedbackScreen
+import myplayground.example.learningq.ui.screens.parent.presence.ParentStudentPresenceScreen
+import myplayground.example.learningq.ui.screens.parent.presence_detail.ParentStudentPresenceDetailScreen
+import myplayground.example.learningq.ui.screens.parent.profile.ParentStudentProfileScreen
+import myplayground.example.learningq.ui.screens.parent.quiz.ParentStudentQuizScreen
+import myplayground.example.learningq.ui.screens.parent.quiz_detail.ParentStudentQuizDetailScreen
+import myplayground.example.learningq.ui.screens.parent.report.ParentStudentReportScreen
+import myplayground.example.learningq.ui.screens.parent.report_detail.ParentStudentReportDetailScreen
 import myplayground.example.learningq.ui.screens.setting.SettingScreen
 import myplayground.example.learningq.ui.screens.sign_in.SignInScreen
 import myplayground.example.learningq.ui.screens.sign_up.SignUpScreen
@@ -376,6 +385,81 @@ fun LearningQApp(
 
                 composable(Screen.StudentFeedback.route) {
                     StudentFeedbackScreen(
+                        modifier = containerModifier,
+                    )
+                }
+
+                composable(Screen.ParentProfile.route) {
+                    globalManager.setAppbarTitle("Profile")
+                    ParentStudentProfileScreen()
+                }
+
+                composable(Screen.ParentDashboard.route) {
+                    globalManager.setAppbarTitle("")
+                    ParentStudentDashboardScreen(
+                        modifier = containerModifier,
+                    )
+                }
+
+                composable(Screen.ParentQuiz.route) {
+                    globalManager.setAppbarTitle("")
+                    ParentStudentQuizScreen(
+                        modifier = containerModifier,
+                        navController = navController,
+                    )
+                }
+
+                composable(
+                    Screen.ParentQuizDetail.route,
+                    arguments = listOf(navArgument("id") { type = NavType.StringType }),
+                ) {
+                    val quizId = it.arguments?.getString("id") ?: ""
+                    ParentStudentQuizDetailScreen(
+                        modifier = containerModifier,
+                        quizId = quizId,
+                    )
+                }
+
+                composable(Screen.ParentPresence.route) {
+                    globalManager.setAppbarTitle("Presence")
+
+                    ParentStudentPresenceScreen(
+                        modifier = containerModifier,
+                        navController = navController,
+                    )
+                }
+
+                composable(
+                    Screen.ParentPresenceDetail.route,
+                    arguments = listOf(navArgument("id") { type = NavType.StringType }),
+                ) {
+                    globalManager.setAppbarTitle("")
+
+                    val classId = it.arguments?.getString("id") ?: ""
+                    ParentStudentPresenceDetailScreen(
+                        modifier = containerModifier,
+                        classId = classId,
+                    )
+                }
+
+                composable(Screen.ParentReport.route) {
+                    globalManager.setAppbarTitle("Report")
+                    ParentStudentReportScreen(
+                        modifier = containerModifier,
+                        navController = navController,
+                    )
+                }
+
+                composable(Screen.ParentReportDetail.route) {
+                    globalManager.setAppbarTitle("Report")
+                    ParentStudentReportDetailScreen(
+                        modifier = containerModifier,
+                        navController = navController,
+                    )
+                }
+
+                composable(Screen.StudentFeedback.route) {
+                    ParentStudentFeedbackScreen(
                         modifier = containerModifier,
                     )
                 }

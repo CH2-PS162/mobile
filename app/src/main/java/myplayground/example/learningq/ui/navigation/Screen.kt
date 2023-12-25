@@ -27,6 +27,23 @@ sealed class Screen(val route: String) {
 
     object StudentFeedback : Screen("studentfeedback")
 
+    object ParentDashboard : Screen("parentdashboard")
+    object ParentProfile : Screen("parentprofile")
+    object ParentQuiz : Screen("parentquiz")
+    object ParentReport : Screen("parentreport")
+    object ParentReportDetail : Screen("parentreportdetail")
+
+    object ParentQuizDetail : Screen("parentquiz/{id}") {
+        fun createRoute(id: String) = "parentquiz/$id"
+    }
+
+    object ParentPresence : Screen("parentpresence")
+    object ParentPresenceDetail : Screen("parentpresence/{id}") {
+        fun createRoute(classId: String) = "parentpresence/$classId"
+    }
+
+    object ParentFeedback : Screen("parentfeedback")
+
     object TeacherProfile : Screen("teacherprofile")
     object TeacherDashboard : Screen("teacherdashboard")
     object TeacherFeedback : Screen("teacherfeedback/{id}") {

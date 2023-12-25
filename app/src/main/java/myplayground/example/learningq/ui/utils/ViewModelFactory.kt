@@ -16,6 +16,15 @@ import myplayground.example.learningq.ui.screens.admin.profile.AdminProfileViewM
 import myplayground.example.learningq.ui.screens.admin.user.AdminUserViewModel
 import myplayground.example.learningq.ui.screens.admin.user_add.AdminUserAddViewModel
 import myplayground.example.learningq.ui.screens.home.HomeViewModel
+import myplayground.example.learningq.ui.screens.parent.dashboard.ParentStudentDashboardViewModel
+import myplayground.example.learningq.ui.screens.parent.feedback.ParentStudentFeedbackViewModel
+import myplayground.example.learningq.ui.screens.parent.presence.ParentStudentPresenceViewModel
+import myplayground.example.learningq.ui.screens.parent.presence_detail.ParentStudentPresenceDetailViewModel
+import myplayground.example.learningq.ui.screens.parent.profile.ParentStudentProfileViewModel
+import myplayground.example.learningq.ui.screens.parent.quiz.ParentStudentQuizViewModel
+import myplayground.example.learningq.ui.screens.parent.quiz_detail.ParentStudentQuizDetailViewModel
+import myplayground.example.learningq.ui.screens.parent.report.ParentStudentReportViewModel
+import myplayground.example.learningq.ui.screens.parent.report_detail.ParentStudentReportDetailViewModel
 import myplayground.example.learningq.ui.screens.sign_in.SignInViewModel
 import myplayground.example.learningq.ui.screens.sign_up.SignUpViewModel
 import myplayground.example.learningq.ui.screens.student.dashboard.StudentDashboardViewModel
@@ -75,6 +84,24 @@ class ViewModelFactory(
             return StudentReportDetailViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(StudentFeedbackViewModel::class.java)) {
             return StudentFeedbackViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentDashboardViewModel::class.java)) {
+            return ParentStudentDashboardViewModel(repository, localStorageManager) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentQuizViewModel::class.java)) {
+            return ParentStudentQuizViewModel(repository, localStorageManager) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentQuizDetailViewModel::class.java)) {
+            return ParentStudentQuizDetailViewModel(repository, localStorageManager) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentPresenceViewModel::class.java)) {
+            return ParentStudentPresenceViewModel(repository, localStorageManager) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentPresenceDetailViewModel::class.java)) {
+            return ParentStudentPresenceDetailViewModel(repository, localStorageManager) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentProfileViewModel::class.java)) {
+            return ParentStudentProfileViewModel(authManager) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentReportViewModel::class.java)) {
+            return ParentStudentReportViewModel(repository, localStorageManager) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentReportDetailViewModel::class.java)) {
+            return ParentStudentReportDetailViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(ParentStudentFeedbackViewModel::class.java)) {
+            return ParentStudentFeedbackViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(TeacherDashboardViewModel::class.java)) {
             return TeacherDashboardViewModel(repository, localStorageManager, authManager) as T
         } else if (modelClass.isAssignableFrom(TeacherProfileViewModel::class.java)) {
