@@ -44,6 +44,7 @@ import myplayground.example.learningq.di.Injection
 import myplayground.example.learningq.model.Role
 import myplayground.example.learningq.ui.layout.Appbar
 import myplayground.example.learningq.ui.layout.DrawerBodyAdmin
+import myplayground.example.learningq.ui.layout.DrawerBodyParent
 import myplayground.example.learningq.ui.layout.DrawerBodyStudent
 import myplayground.example.learningq.ui.layout.DrawerBodyTeacher
 import myplayground.example.learningq.ui.layout.DrawerHeader
@@ -127,6 +128,10 @@ fun LearningQApp(
                     Screen.AdminClass.route
                 }
 
+                is Role.Parent -> {
+                    Screen.ParentDashboard.route
+                }
+
                 else -> Screen.AuthLoading.route
             }
         }
@@ -196,6 +201,22 @@ fun LearningQApp(
                                     },
 
                                     )
+                            }
+
+                            Role.Parent -> {
+                                DrawerBodyParent(
+                                    modifier = Modifier
+                                        .weight(1F)
+                                        .verticalScroll(rememberScrollState()),
+                                    navController = navController,
+                                    currentRoute = currentRoute ?: "",
+                                    authManager = authManager,
+                                    closeDrawer = {
+                                        scope.launch {
+                                            drawerState.close()
+                                        }
+                                    },
+                                )
                             }
 
                             else -> {}

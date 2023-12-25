@@ -450,7 +450,7 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
             name = "Parent",
             password = "12345",
 //            image_url = "https://miro.medium.com/v2/resize:fill:110:110/1*x1I-A7aVdqWFelvJakKWBg.jpeg",
-            role = Role.Admin,
+            role = Role.Parent,
 
             studentUserId = studentUser.id,
             studentUser = studentUser,
