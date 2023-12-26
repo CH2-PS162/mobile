@@ -129,7 +129,7 @@ fun LearningQApp(
                 }
 
                 is Role.Parent -> {
-                    Screen.ParentDashboard.route
+                    Screen.ParentReport.route
                 }
 
                 else -> Screen.AuthLoading.route

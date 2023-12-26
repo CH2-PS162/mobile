@@ -38,6 +38,7 @@ import myplayground.example.learningq.R
 import myplayground.example.learningq.di.Injection
 import myplayground.example.learningq.local_storage.DatastoreSettings
 import myplayground.example.learningq.local_storage.dataStore
+import myplayground.example.learningq.model.Role
 import myplayground.example.learningq.ui.components.CustomButton
 import myplayground.example.learningq.ui.components.CustomError
 import myplayground.example.learningq.ui.components.CustomOutlinedTextField
@@ -65,7 +66,15 @@ fun SignInScreen(
 
     LaunchedEffect(event) {
         if (event is SignInUIEvent.ValidationEvent.Success) {
-            navController.navigate(Screen.StudentDashboard.route) {
+            val currentRole = (event as SignInUIEvent.ValidationEvent.Success).role
+            navController.navigate(
+                when (currentRole) {
+                    is Role.Student -> Screen.StudentDashboard.route
+                    is Role.Teacher -> Screen.TeacherDashboard.route
+                    is Role.Admin -> Screen.AdminClass.route
+                    is Role.Parent -> Screen.ParentReport.route
+                }
+            ) {
                 popUpTo(0)
             }
         }

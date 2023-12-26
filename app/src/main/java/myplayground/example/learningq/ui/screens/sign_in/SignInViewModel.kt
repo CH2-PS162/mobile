@@ -80,10 +80,11 @@ class SignInViewModel(
                     )
 
                     if (token?.auth_token != null && token.auth_token.isNotEmpty()) {
+                        val role = Role.parseString(token.role)
                         localStorageManager.saveUserToken(token.auth_token ?: "")
-                        localStorageManager.saveUserRole(Role.parseString(token.role))
+                        localStorageManager.saveUserRole(role)
 
-                        validationEvent.emit(SignInUIEvent.ValidationEvent.Success())
+                        validationEvent.emit(SignInUIEvent.ValidationEvent.Success(role))
                     }
                 } catch (e: HttpException) {
                     _uiState.value =

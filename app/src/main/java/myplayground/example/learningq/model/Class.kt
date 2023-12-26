@@ -8,3 +8,8 @@ data class Class(
     val schedule: String = "",
     val description: String = "",
 )
+
+data class StudentClass(
+    val classId: String = "",
+    val studentId: String = "",
+)

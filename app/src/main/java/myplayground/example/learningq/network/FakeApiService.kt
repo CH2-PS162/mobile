@@ -9,6 +9,7 @@ import myplayground.example.learningq.model.Quiz
 import myplayground.example.learningq.model.QuizQuestion
 import myplayground.example.learningq.model.QuizQuestionType
 import myplayground.example.learningq.model.Role
+import myplayground.example.learningq.model.StudentClass
 import myplayground.example.learningq.model.Token
 import myplayground.example.learningq.model.User
 import myplayground.example.learningq.network.request.AdminCreateUserRequest
@@ -416,6 +417,17 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
             feedbackList
         }
 
+        val STUDENT_CLASS_LIST: List<StudentClass> by lazy {
+            val studentClassList = mutableListOf(
+                StudentClass(
+                    classId = CLASS_LIST[0].id,
+                    studentId = studentUser.id,
+                )
+            )
+
+            studentClassList
+        }
+
 
         val studentUser = User(
             id = "1",
@@ -460,6 +472,7 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
             studentUser, teacherUser, adminUser, parentUser
         )
 
+
 //        val USER_LIST: List<User> by lazy {
 //
 //            val userList = mutableListOf<User>()
@@ -477,6 +490,7 @@ class FakeApiService(val localStorageManager: LocalStorageManager) : ApiService 
 //
 //            userList.toList()
 //        }
+
 
         fun getInstance(
             localStorageManager: LocalStorageManager,

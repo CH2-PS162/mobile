@@ -108,27 +108,12 @@ fun ParentStudentReportDetailContent(
                     text = "Agama",
                     weight = col2Weight,
                 )
-                TableCell(
+                TableCellText(
                     modifier = cellModifier,
+                    textColor = textColor,
+                    text = "87",
                     weight = col3Weight,
-                ) { modifier ->
-                    Box(
-                        modifier = modifier
-                            .fillMaxSize()
-                            .clip(MaterialTheme.shapes.medium)
-                            .background(MaterialTheme.colorScheme.primary)
-                            .clickable {
-                                navigateToFeedback()
-                            },
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(
-                            text = "Feedback",
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            style = MaterialTheme.typography.headlineSmall,
-                        )
-                    }
-                }
+                )
             }
 
             Row {
