@@ -28,8 +28,8 @@ class AdminUserAddViewModel(
                 is AdminUserAddEvent.Init -> {
                 }
 
-                is AdminUserAddEvent.FeedbackAnswerChanged -> {
-                    _uiState.value = _uiState.value.copy(feedbackAnswer = event.feedback)
+                is AdminUserAddEvent.RoleChanged -> {
+                    _uiState.value = _uiState.value.copy(role = event.role)
                 }
 
                 is AdminUserAddEvent.EmailChanged -> {
@@ -57,7 +57,7 @@ class AdminUserAddViewModel(
 
         try {
             delay(1500)
-        }catch(e: HttpException) {
+        } catch (e: HttpException) {
 
         } finally {
             _isLoading.value = false

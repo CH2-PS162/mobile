@@ -548,7 +548,8 @@ fun LearningQApp(
 
                 composable(Screen.AdminClass.route) {
                     AdminClassScreen(
-                        modifier = containerModifier
+                        modifier = containerModifier,
+                        navController = navController,
                     )
                 }
 

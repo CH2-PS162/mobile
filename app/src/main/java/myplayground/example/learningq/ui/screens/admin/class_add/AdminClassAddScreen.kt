@@ -58,7 +58,7 @@ fun UserAddContent(
         modifier = modifier.fillMaxSize(),
     ) {
         Text(
-            text = "Create User",
+            text = "Create Class",
             color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.titleMedium,
         )

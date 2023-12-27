@@ -2,15 +2,21 @@ package myplayground.example.learningq.ui.screens.admin.user_add
 
 import android.app.Application
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -21,11 +27,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import myplayground.example.learningq.di.Injection
 import myplayground.example.learningq.local_storage.DatastoreSettings
 import myplayground.example.learningq.local_storage.dataStore
+import myplayground.example.learningq.model.Role
 import myplayground.example.learningq.ui.components.CustomButton
 import myplayground.example.learningq.ui.components.CustomOutlinedTextField
 import myplayground.example.learningq.ui.components.PasswordOutlinedTextField
+import myplayground.example.learningq.ui.screens.admin.course_add.AdminCourseAddEvent
 import myplayground.example.learningq.ui.theme.LearningQTheme
 import myplayground.example.learningq.ui.utils.ViewModelFactory
+import myplayground.example.learningq.utils.CustomDayOfWeek
 
 @Composable
 fun AdminUserAddScreen(
@@ -48,6 +57,7 @@ fun AdminUserAddScreen(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserAddContent(
     modifier: Modifier = Modifier,
@@ -55,6 +65,10 @@ fun UserAddContent(
     isLoading: Boolean = false,
     onEvent: (AdminUserAddEvent) -> Unit = {},
 ) {
+    val isRoleMenuExpanded = remember {
+        mutableStateOf(false)
+    }
+
     Column(
         modifier = modifier.fillMaxSize(),
     ) {
@@ -145,6 +159,45 @@ fun UserAddContent(
 //            },
         )
 
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+
+
+        ExposedDropdownMenuBox(
+            expanded = isRoleMenuExpanded.value,
+            onExpandedChange = {
+                isRoleMenuExpanded.value = !isRoleMenuExpanded.value
+            },
+        ) {
+            CustomOutlinedTextField(
+                value = inputData.role?.toString() ?: "",
+                onValueChange = {
+                },
+                label = { Text("Role") },
+                modifier = Modifier
+                    .menuAnchor()
+                    .fillMaxWidth()
+                    .clickable {}
+
+            )
+
+            ExposedDropdownMenu(
+                expanded = isRoleMenuExpanded.value, onDismissRequest = {
+                    isRoleMenuExpanded.value = false
+                }, modifier = Modifier.fillMaxWidth()
+            ) { ->
+                Role.list()
+                    .forEach { item ->
+                        DropdownMenuItem(onClick = {
+                            onEvent(AdminUserAddEvent.RoleChanged(item))
+                            isRoleMenuExpanded.value = false
+                        }, text = {
+                            Text(text = item.toString())
+                        })
+                    }
+            }
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
 

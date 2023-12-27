@@ -16,6 +16,13 @@ sealed class Role {
     }
 
     companion object {
+        fun list() = listOf(
+            Student,
+            Teacher,
+            Admin,
+            Parent,
+        )
+
         fun parseString(str: String): Role {
             return when (str) {
                 "student" -> Student
